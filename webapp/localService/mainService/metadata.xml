@@ -72,8 +72,8 @@
                     <End EntitySet="SalesOrderItemSet" Role="ToRole_SalesOder_SalesOrderItem"/>
                 </AssociationSet>
             </EntityContainer>
-            <atom:link rel="self" href="http://bxdemo1.bxts.co.kr:8030/sap/opu/odata/sap/YGWPRODSO_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
-            <atom:link rel="latest-version" href="http://bxdemo1.bxts.co.kr:8030/sap/opu/odata/sap/YGWPRODSO_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="self" href="**/sap/opu/odata/sap/YGWPRODSO_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="**/sap/opu/odata/sap/YGWPRODSO_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
         </Schema>
     </edmx:DataServices>
 </edmx:Edmx>
