@@ -1,0 +1,69 @@
+<mvc:View
+    controllerName="yproduct.controller.Detail"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:uxap="sap.uxap"
+    xmlns:html="http://www.w3.org/1999/xhtml">
+
+    <uxap:ObjectPageLayout id="idObjectPageLayoutD"
+        enableLazyLoading="true"
+        showTitleInHeaderContent="true"
+        showFooter="true"
+        >
+        <uxap:headerTitle>
+            <uxap:ObjectPageHeader 
+            id="_IDGenObjectPageHeaderD" 
+            objectTitle="{Carrid}"
+            objectSubtitle="{Connid}"
+            isObjectIconAlwaysVisible="false"
+            isObjectTitleAlwaysVisible="false"
+            isObjectSubtitleAlwaysVisible="false">
+            </uxap:ObjectPageHeader>
+        </uxap:headerTitle>
+        <uxap:sections>
+            <uxap:ObjectPageSection 
+            id="idObjectPageSectionD" 
+            titleUppercase="false"
+            title="{i18n>productInfoInputTitle}"
+            >
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection 
+                    id="idObjectPageSubSectionD"
+                    title="Product Basic Information"
+                    >
+                    <core:Fragment fragmentName="yproduct.view.fragment.ProductForm" type="XML"/>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+            <uxap:ObjectPageSection id="_IDGenObjectPageSectionD" titleUppercase="false" title="{i18n>productDetailTitle}">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection id="_IDGenObjectPageSubSectionD" title="">
+                        <VBox id="idEditorContainerD">
+                        </VBox>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+        </uxap:sections>
+        <uxap:footer>
+            <Bar id="_IDGenBarD">
+                <contentLeft>
+                    <Button
+                        id="_IDGenButton0D"
+                        type="Emphasized"
+                        icon="sap-icon://message-popup"
+                        text="{= ${message>/}.length }"
+                        visible="{=!!${message>/}.length}"
+                        press="handleMessagePopoverPress"
+                    />                
+                </contentLeft>
+                <contentRight>
+                    <Button id="idBtnSaveD" text="{i18n>btnSave}" press="handleSave" type="Emphasized" visible="{flagSet>/isEdit}"/>
+                    <Button id="idBtnEditD" text="{i18n>btnEdit}" press="handleEdit" type="Transparent" visible="{= !${flagSet>/isEdit}}"/>
+                    <Button id="idBtnCancelD" text="{i18n>btnCancel}" press="handleEdit" type="Transparent" visible="{flagSet>/isEdit}"/>
+                    <Button id="idBtnDeleteD" text="{i18n>btnDelete}" press="handleDelete" type="Emphasized" visible="{= !${flagSet>/isEdit}}"/>                    
+                </contentRight>
+            </Bar>
+        </uxap:footer>
+    </uxap:ObjectPageLayout>
+</mvc:View>

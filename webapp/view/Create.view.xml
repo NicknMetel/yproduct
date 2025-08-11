@@ -1,0 +1,85 @@
+<mvc:View
+    controllerName="yproduct.controller.Create"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:uxap="sap.uxap"
+    xmlns:smartform="sap.ui.comp.smartform"
+    xmlns:smartfield="sap.ui.comp.smartfield"
+    xmlns:upload="sap.m.upload"
+    xmlns:html="http://www.w3.org/1999/xhtml">
+
+    <uxap:ObjectPageLayout id="idObjectPageLayout"
+        enableLazyLoading="true"
+        showTitleInHeaderContent="true"
+        showFooter="true"
+        >
+        <uxap:headerTitle>
+            <uxap:ObjectPageHeader 
+            id="_IDGenObjectPageHeader" 
+            objectTitle="{i18n>newTitle}"
+            objectSubtitle="{i18n>newSubTitle}"
+            isObjectIconAlwaysVisible="false"
+            isObjectTitleAlwaysVisible="false"
+            isObjectSubtitleAlwaysVisible="false">
+            </uxap:ObjectPageHeader>
+        </uxap:headerTitle>
+        <uxap:sections>
+            <uxap:ObjectPageSection 
+            id="idObjectPageSection" 
+            titleUppercase="false"
+            title="{i18n>productInfoInputTitle}"
+            >
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection 
+                    id="idObjectPageSubSection"
+                    title="Product Basic Information"
+                    >
+                        <core:Fragment fragmentName="yproduct.view.fragment.ProductForm" type="XML"/>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+            <uxap:ObjectPageSection id="_IDGenObjectPageSection" titleUppercase="false" title="{i18n>productDetailTitle}">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection id="_IDGenObjectPageSubSection" title="">
+                        <VBox id="idEditorContainer">
+                        </VBox>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+            <uxap:ObjectPageSection id="_IDGenObjectPageSection1" titleUppercase="false" title="{i18n>productDetailTitle}">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection id="_IDGenObjectPageSubSection1" title="">
+                       <upload:UploadSet id="idUploadSet" instantUpload="false" showIcons="true"
+                            uploadEnabled="true" terminationEnabled="true"
+                            beforeUploadStarts="handleBeforeUploadStarts"
+                            uploadUrl="/sap/opu/odata/sap/YGWPRODSO_SRV/AttachSet"
+                            items="{path: '/AttachSet', templateShareable: false}">
+                            <upload:items>
+                                <upload:UploadSetItem id="_IDGenUploadSetItem" fileName="{FileName}" mediaType="{MimeType}" visibleEdit="false" />
+                            </upload:items>
+                        </upload:UploadSet>    
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>            
+        </uxap:sections>
+        <uxap:footer>
+            <Bar id="_IDGenBar">
+                <contentLeft>
+                    <Button
+                        id="_IDGenButton0"
+                        type="Emphasized"
+                        icon="sap-icon://message-popup"
+                        text="{= ${message>/}.length }"
+                        visible="{=!!${message>/}.length}"
+                        press="handleMessagePopoverPress"
+                    />                
+                </contentLeft>
+                <contentRight>
+                    <Button id="idBtnSave" text="{i18n>btnSave}" press="handleSave" type="Emphasized"/>
+                    <Button id="idBtnCancel" text="{i18n>btnCancel}" press="handleCancel"/>
+                </contentRight>
+            </Bar>
+        </uxap:footer>
+    </uxap:ObjectPageLayout>
+</mvc:View>

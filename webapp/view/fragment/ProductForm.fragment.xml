@@ -1,0 +1,21 @@
+<core:FragmentDefinition 
+    xmlns:core="sap.ui.core" 
+    xmlns="sap.m" 
+    xmlns:smartform="sap.ui.comp.smartform"
+    xmlns:smartfield="sap.ui.comp.smartfield"
+    xmlns:ui="sap.ui.table"
+>
+    <smartform:SmartForm id="idForm" editable="{flagSet>/isEdit}">
+         <smartform:Group id="idGroup">
+             <smartform:GroupElement id="idGroupElement1" label="{i18n>lbProdid}">
+                 <smartfield:SmartField id="Prodid" value="{Prodid}"/>
+             </smartform:GroupElement>
+             <smartform:GroupElement id="idGroupElement2" label="{i18n>lbTitle}">
+                 <smartfield:SmartField id="Title" value="{Title}"/>
+             </smartform:GroupElement>
+             <!-- <smartform:GroupElement id="idGroupElement3">
+                 <smartfield:SmartField id="Content" value="{Content}"/>
+             </smartform:GroupElement> -->
+         </smartform:Group>                   
+     </smartform:SmartForm>
+</core:FragmentDefinition>

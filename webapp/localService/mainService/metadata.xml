@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="YGWPRODSO_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="Attach" m:HasStream="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Guid"/>
+                </Key>
+                <Property Name="Guid" Type="Edm.String" Nullable="false" MaxLength="32" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ProdId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="FileName" Type="Edm.String" Nullable="false" MaxLength="255" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FileSize" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MimeType" Type="Edm.String" Nullable="false" MaxLength="128" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DownUrl" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Data" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="Product" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Prodid"/>
+                </Key>
+                <Property Name="Prodid" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Title" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:sortable="false"/>
+                <Property Name="Content" Type="Edm.String" Nullable="false" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="SalesOrder" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Sono"/>
+                </Key>
+                <Property Name="Sono" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Erdat" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Erzet" Type="Edm.Time" Nullable="false" Precision="0" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Memo" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:sortable="false"/>
+                <NavigationProperty Name="ToSalesOrderItem" Relationship="YGWPRODSO_SRV.SalesOder_SalesOrderItem" FromRole="FromRole_SalesOder_SalesOrderItem" ToRole="ToRole_SalesOder_SalesOrderItem"/>
+            </EntityType>
+            <EntityType Name="SalesOrderItem" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Sono"/>
+                    <PropertyRef Name="Itemno"/>
+                </Key>
+                <Property Name="Sono" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Itemno" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Prodid" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Qty" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="YhProd" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Prodid"/>
+                </Key>
+                <Property Name="Prodid" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Title" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <Association Name="SalesOder_SalesOrderItem" sap:content-version="1">
+                <End Type="YGWPRODSO_SRV.SalesOrder" Multiplicity="1" Role="FromRole_SalesOder_SalesOrderItem"/>
+                <End Type="YGWPRODSO_SRV.SalesOrderItem" Multiplicity="*" Role="ToRole_SalesOder_SalesOrderItem"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_SalesOder_SalesOrderItem">
+                        <PropertyRef Name="Sono"/>
+                    </Principal>
+                    <Dependent Role="ToRole_SalesOder_SalesOrderItem">
+                        <PropertyRef Name="Sono"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="YGWPRODSO_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="AttachSet" EntityType="YGWPRODSO_SRV.Attach" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="ProductSet" EntityType="YGWPRODSO_SRV.Product" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="SalesOrderSet" EntityType="YGWPRODSO_SRV.SalesOrder" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="SalesOrderItemSet" EntityType="YGWPRODSO_SRV.SalesOrderItem" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="YhProdSet" EntityType="YGWPRODSO_SRV.YhProd" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <AssociationSet Name="SalesOder_SalesOrderItemSet" Association="YGWPRODSO_SRV.SalesOder_SalesOrderItem" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="SalesOrderSet" Role="FromRole_SalesOder_SalesOrderItem"/>
+                    <End EntitySet="SalesOrderItemSet" Role="ToRole_SalesOder_SalesOrderItem"/>
+                </AssociationSet>
+            </EntityContainer>
+            <atom:link rel="self" href="http://bxdemo1.bxts.co.kr:8030/sap/opu/odata/sap/YGWPRODSO_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://bxdemo1.bxts.co.kr:8030/sap/opu/odata/sap/YGWPRODSO_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
