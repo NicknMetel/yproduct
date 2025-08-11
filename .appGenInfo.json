@@ -4,7 +4,7 @@
     "generatorPlatform": "Visual Studio Code",
     "serviceType": "SAP System (ABAP On Premise)",
     "metadataFilename": "",
-    "serviceUrl": "http://bxdemo1.bxts.co.kr:8030/sap/opu/odata/sap/YGWPRODSO_SRV",
+    "serviceUrl": "**",
     "appName": "yproduct",
     "appTitle": "App Title",
     "appDescription": "YPRODSO 주문관리 ",
